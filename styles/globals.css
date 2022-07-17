@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html,
 body {
   padding: 0;
@@ -18,4 +17,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@layer components{
+  .navBtn{
+    @apply hidden h-6 md:inline-flex
+    cursor-pointer hover:scale-125 
+    transition-all duration-150 ease-out;
+  }
 }
