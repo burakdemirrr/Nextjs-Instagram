@@ -11,7 +11,7 @@ import {useSession} from "next-auth/react"
 import { HeartIcon } from "@heroicons/react/solid"
 import {db} from "../firebase"
 import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore'
-
+import Moment from 'react-moment'
 function Post({ id, username, userImg, img, caption }) {
   const { data: session } = useSession();
   const [comments, setComments] = useState([]);
@@ -71,6 +71,10 @@ function Post({ id, username, userImg, img, caption }) {
                 <img className='h-7 rounded-full' src={comment.data().userImg} alt="" />
                 <p className='text-sm flex-1'><span className='font-bold'>{comment.data().username}</span>{" "}
                 {comment.data().comment} </p>
+
+                <Moment fromNow>
+                  {comment.data().timestamp?.toDate()}
+                </Moment>
    
               </div>
             ))}
