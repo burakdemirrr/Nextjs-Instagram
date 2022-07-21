@@ -8,13 +8,22 @@ import {
     PaperAirplaneIcon,
     MenuIcon
 } from "@heroicons/react/outline"
-
+import {useSession,signIn,signOut} from "next-auth/react"
 import {HomeIcon}  from "@heroicons/react/solid"
+import { useRouter } from 'next/router'
+import { modalState } from '../atoms/modalAtom'
+import { useRecoilState } from 'recoil'
+
 const Header = () => {
-  return (
+    const {data:session}=useSession();
+    const[open,setOpen]=useRecoilState(modalState);
+    console.log(session);
+    const router=useRouter();
+
+    return (
     <div className='shadow-sm border-b bg-white sticky top-0 z-50' suppressHydrationWarning="true">
     <div className='flex justify-between  max-w-6xl mx-5 xl:mx-auto '>
-        <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
+        <div onClick={()=>router.push("/")} className='relative hidden lg:inline-grid w-24 cursor-pointer'>
             <Image
             src="https://links.papareact.com/ocw" layout='fill' objectFit='contain'
             />
@@ -45,6 +54,7 @@ const Header = () => {
         <div className='flex items-center justify-end space-x-4'>
             <HomeIcon className='navBtn'/>
             <MenuIcon className='h-6 md:hidden cursor-pointer'/>
+            
             <div className='relative navBtn'>
             <PaperAirplaneIcon className='navBtn rotate-45' />
             <div className='absolute -top-2 -right-1 text-xs
@@ -53,12 +63,13 @@ const Header = () => {
             '>3</div>
             
             </div>
-            <PlusCircleIcon className='navBtn'/>
-            <UserGroupIcon className='navBtn'/>
-            <HeartIcon className='navBtn'/>
-            <img src="https://links.papareact.com/3ke" alt="profile pic"
+            <PlusCircleIcon onClick={()=>setOpen(true)} className='navBtn hover:text-amber-600'/>
+            <UserGroupIcon className='navBtn hover:text-blue-400'/>
+            <HeartIcon className='navBtn hover:text-red-500'  />
+            <img onClick={signOut} src={session?.user?.image} alt="profile pic"
                 className='h-10  rounded-full cursor-pointer'
             />
+            <button onClick={signIn}>Sign In</button>
         </div>
     </div></div>
   )

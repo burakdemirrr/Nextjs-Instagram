@@ -10,12 +10,18 @@
   },
   "dependencies": {
     "@faker-js/faker": "^7.3.0",
+    "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
     "@tailwindcss/forms": "^0.5.2",
     "faker": "^6.6.6",
+    "firebase": "^9.9.0",
     "next": "12.2.2",
+    "next-auth": "^4.10.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.0.3",
+    "react-moment": "^1.1.2",
+    "recoil": "^0.7.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
