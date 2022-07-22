@@ -5,8 +5,6 @@ import {db} from "../firebase"
 const Posts = () => {
  
   const [posts,setPosts]=useState([]);
-
-
   useEffect(()=>{
        onSnapshot(query(collection(db,"posts"),orderBy('timestamp','desc')),snapshot=>{
       setPosts(snapshot.docs)
